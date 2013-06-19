@@ -1,0 +1,17 @@
+{
+    "name": "XDM-NotifyMyAndroid",
+    "info_url": "https://github.com/Mochaka/XDM-NotifyMyAndroid",
+    "plugins": {
+        "me.mochaka.nma": [
+            {
+                "major_version": 0,
+                "minor_version": 1,
+                "format": "zip",
+                "desc": "Simple NMA notifier.",
+                "name": "NMA",
+                "type": "Notifier",
+                "download_url": "https://github.com/Mochaka/XDM-NotifyMyAndroid/archive/master.zip"
+            }
+        ],
+    }
+}
