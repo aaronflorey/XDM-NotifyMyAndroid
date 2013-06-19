@@ -44,5 +44,5 @@ class NMA(Notifier):
             log("NMA code %s" % r.code)
             return True
         else:
-            log('NMA Error: %s, %s', % (r.code, r.message))
+            log('NMA Error: %s, %s' % (r.code, r.message))
             return False
