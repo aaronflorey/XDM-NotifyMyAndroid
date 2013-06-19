@@ -20,7 +20,7 @@
 #along with this program.  If not, see http://www.gnu.org/licenses/.
 
 from xdm.plugins import *
-from libs.pynam import pynma
+import pynma
 
 class NMA(Notifier):
     version = "0.1"
@@ -36,7 +36,7 @@ class NMA(Notifier):
             log.error("NMA API Key not set.")
             return False
 
-        p = PyNMA(self.c.nma_apikey)
+        p = pynma.PyNMA(self.c.nma_apikey)
 
         r = p.push('XDM', 'XDM Notification', msg)
 
