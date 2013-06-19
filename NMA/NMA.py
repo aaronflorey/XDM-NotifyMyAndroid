@@ -24,7 +24,7 @@ from libs import pynma
 from pprint import pprint
 
 class NMA(Notifier):
-    version = "0.2"
+    version = "0.3"
     identifier = "me.mochaka.nma"
     addMediaTypeOptions = False
     _config = {'nma_apikey': ''}
@@ -39,6 +39,10 @@ class NMA(Notifier):
 
     def _sendMessage(self, msg):
         apikey = str(self.c.nma_apikey)
+
+        if not self.c.nma_apikey:
+            log.error("NMA API Key not set.")
+            return False
 
         p = pynma.PyNMA(apikey)
 
@@ -56,7 +60,7 @@ class NMA(Notifier):
         if result:
             return (result, {}, 'Message sent. Check your device(s)')
         else:
-            return (result, {}, 'Message NOT send. Check your API Key')
+            return (result, {}, 'Message NOT sent. Check your API Key')
     _sendTest.args = ['nma_apikey']
 
     config_meta = {'nma_apikey': {'human': 'NotifyMyAndroid API Key',
