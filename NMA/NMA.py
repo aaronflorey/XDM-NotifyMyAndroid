@@ -23,7 +23,7 @@ from xdm.plugins import *
 from pynma import PyNMA
 
 class NMA(Notifier):
-    version = "0.1"
+    version = "0.2"
     identifier = "me.mochaka.nma"
     addMediaTypeOptions = False
     _config = {'nma_apikey': ''}
