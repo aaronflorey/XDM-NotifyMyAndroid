@@ -24,7 +24,6 @@ from libs import pynma
 from pprint import pprint
 
 class NMA(Notifier):
-    version = "0.3"
     identifier = "me.mochaka.nma"
     addMediaTypeOptions = False
     _config = {'nma_apikey': ''}
