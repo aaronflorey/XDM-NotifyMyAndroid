@@ -1,5 +1,5 @@
-# Author: Dennis Lutter <lad1337@gmail.com>
-# URL: https://github.com/lad1337/XDM
+# Author: Aaron Florey
+# URL: https://raw.github.com/Mochaka/XDM-NotifyMyAndroid
 #
 # This file is part of XDM: eXtentable Download Manager.
 #
@@ -20,29 +20,45 @@
 #along with this program.  If not, see http://www.gnu.org/licenses/.
 
 from xdm.plugins import *
-from pynma import PyNMA
+from libs import pynma
+from pprint import pprint
 
 class NMA(Notifier):
-    version = "0.2"
+    version = "0.1"
     identifier = "me.mochaka.nma"
     addMediaTypeOptions = False
     _config = {'nma_apikey': ''}
-    config_meta = {'nma_apikey': {'human': 'NotifyMyAndroid API Key',
-                                    'desc': 'The API Key from your NotifyMyAndroid account, for sending notifications to android.'}}
 
-    def sendMessage(msg, element=None):
+    def sendMessage(self, msg, element=None):
         
         if not self.c.nma_apikey:
             log.error("NMA API Key not set.")
             return False
 
-        p = PyNMA(self.c.nma_apikey)
+        return self._sendMessage(msg)
+
+    def _sendMessage(self, msg):
+        apikey = str(self.c.nma_apikey)
+
+        p = pynma.PyNMA(apikey)
 
         r = p.push('XDM', 'XDM Notification', msg)
 
-        if(r.code == 200):
-            log("NMA code %s" % r.code)
+        if(int(r[apikey]['code']) == 200):
+            log("NMA code %s" % r[apikey]['code'])
             return True
         else:
-            log('NMA Error: %s, %s' % (r.code, r.message))
+            log('NMA Error: %s, %s' % (r[apikey]['code'], r[apikey]['message']))
             return False
+
+    def _sendTest(self, nma_apikey):
+        result = self._sendMessage('Test From XDM')
+        if result:
+            return (result, {}, 'Message sent. Check your device(s)')
+        else:
+            return (result, {}, 'Message NOT send. Check your API Key')
+    _sendTest.args = ['nma_apikey']
+
+    config_meta = {'nma_apikey': {'human': 'NotifyMyAndroid API Key',
+                                    'desc': 'The API Key from your NotifyMyAndroid account, for sending notifications to android.'},
+                    'plugin_buttons': {'sendTest': {'action': _sendTest, 'name': 'Send test'}}}
