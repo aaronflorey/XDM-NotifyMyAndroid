@@ -50,7 +50,7 @@ class NMA(Notifier):
 
         code = int(r[apikey]['code'])
 
-        if(code == 200):
+        if code == 200:
             log("NMA code %s" % r[apikey]['code'])
             return True
         else:
