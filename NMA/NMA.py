@@ -48,7 +48,7 @@ class NMA(Notifier):
 
         r = p.push('XDM', 'XDM Notification', msg)
 
-        if(str(r[apikey]['code']) == '200'):
+        if(int(r[apikey]['code']) == 200):
             log("NMA code %s" % r[apikey]['code'])
             return True
         else:
