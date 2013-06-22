@@ -48,14 +48,13 @@ class NMA(Notifier):
 
         r = p.push('XDM', 'XDM Notification', msg)
 
-        code = int(r[apikey]['code'])
-
-        if code == 200:
-            log("NMA code %s" % r[apikey]['code'])
-            return True
-        else:
+        if not response[apikey]['code'] == u'200':
             log('NMA Error: %s, %s' % (r[apikey]['code'], r[apikey]['message']))
             return False
+        else:
+            log("NMA code %s" % r[apikey]['code'])
+            return True
+
 
     def _sendTest(self, nma_apikey):
         result = self._sendMessage('Test From XDM')
