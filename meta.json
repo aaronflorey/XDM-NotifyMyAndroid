@@ -1,6 +1,6 @@
 {
     "name": "XDM-NotifyMyAndroid",
-    "info_url": "https://github.com/Mochaka/XDM-NotifyMyAndroid",
+    "info_url": "https://github.com/lad1337/XDM-NotifyMyAndroid",
     "plugins": {
         "me.mochaka.nma": [
             {
@@ -10,7 +10,7 @@
                 "desc": "Simple NMA notifier.",
                 "name": "NMA",
                 "type": "Notifier",
-                "download_url": "https://github.com/Mochaka/XDM-NotifyMyAndroid/archive/master.zip"
+                "download_url": "https://github.com/lad1337/XDM-NotifyMyAndroid/archive/master.zip"
             }
         ]
     }
